@@ -4,13 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.example.onlineshopping.databinding.ActivityCategoryBinding;
-import com.example.onlineshopping.databinding.ActivityRegisterBinding;
-
-import java.net.URI;
 
 public class category extends AppCompatActivity {
     private ActivityCategoryBinding binding;
@@ -55,8 +50,8 @@ public class category extends AppCompatActivity {
 
         binding.shoeImage.setOnClickListener(v ->{
 
-            Intent intent = new Intent(category.this, shoe.class);
-            intent.putExtra("category","shoe");
+            Intent intent = new Intent(category.this, cartAdapter.class);
+            intent.putExtra("category","cartAdapter");
             startActivity(intent);
 
 
