@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/home_applogo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@drawable/applogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/category_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/home_applogo"
+        app:layout_constraintEnd_toEndOf="@id/home_applogo"
+        app:layout_constraintTop_toBottomOf="@id/home_applogo"
+        android:text="Category"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_margin="20dp"
+        android:textColor="@color/purple_200"
+        />
+    <ImageView
+        android:id="@+id/t_shirt_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/category_header"
+        app:layout_constraintTop_toBottomOf="@id/category_header"
+        android:src="@drawable/tshirts"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        />
+    <ImageView
+        android:id="@+id/sweater_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/t_shirt_image"
+        app:layout_constraintTop_toBottomOf="@id/category_header"
+        android:src="@drawable/sweather"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        />
+    <ImageView
+        android:id="@+id/sport_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/sweater_image"
+        app:layout_constraintTop_toBottomOf="@id/category_header"
+        android:src="@drawable/sports"
+        android:layout_marginTop="20dp"
+        android:padding="2dp"
+        />
+    <ImageView
+        android:id="@+id/shoe_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/sport_image"
+        app:layout_constraintTop_toBottomOf="@id/category_header"
+        android:src="@drawable/shoess"
+        android:layout_marginTop="20dp"
+        android:padding="2dp"
+        />
+    <ImageView
+        android:id="@+id/purse_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/t_shirt_image"
+        app:layout_constraintTop_toBottomOf="@id/t_shirt_image"
+        android:src="@drawable/purses_bags"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        />
+    <ImageView
+        android:id="@+id/watch_image"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        app:layout_constraintStart_toEndOf="@id/purse_image"
+        app:layout_constraintTop_toBottomOf="@id/sweater_image"
+        android:src="@drawable/watches"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        />
+    <ImageView
+        android:id="@+id/mobile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/watch_image"
+        app:layout_constraintTop_toBottomOf="@id/sport_image"
+        android:src="@drawable/mobiles"
+        android:layout_marginTop="20dp"
+        android:padding="2dp"
+        />
+
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/productRecyclerView"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/mobile_image"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
