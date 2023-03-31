@@ -59,8 +59,8 @@ public class category extends AppCompatActivity {
 
         binding.purseImage.setOnClickListener(v ->{
 
-            Intent intent = new Intent(category.this, bag.class);
-            intent.putExtra("category","bag");
+            Intent intent = new Intent(category.this, cartViewHolder.class);
+            intent.putExtra("category","cartViewHolder");
             startActivity(intent);
 
 

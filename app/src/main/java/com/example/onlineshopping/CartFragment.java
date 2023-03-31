@@ -8,12 +8,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 
 public class CartFragment extends Fragment {
 
+    private ArrayList<Product> cart = new ArrayList<>();
 
-    public CartFragment() {
-        // Required empty public constructor
+    public class Product {
+        private String name;
+        private double price;
+        private int quantity;
+
+        public Product(String name, double price, int quantity) {
+            this.name = name;
+            this.price = price;
+            this.quantity = quantity;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
     }
 
 
@@ -22,5 +49,13 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false);
+    }
+
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        for (Product p : cart) {
+            totalPrice += p.getPrice() * p.getQuantity();
+        }
+        return totalPrice;
     }
 }

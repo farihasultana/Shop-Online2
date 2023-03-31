@@ -9,6 +9,6 @@ public class watch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_watch);
+        setContentView(R.layout.product_details);
     }
 }

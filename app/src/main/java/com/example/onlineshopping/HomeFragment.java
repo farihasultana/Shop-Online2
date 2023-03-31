@@ -1,5 +1,8 @@
 package com.example.onlineshopping;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +20,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
-    List<String> productList;
+    List<product> productList;
     FragmentHomeBinding binding;
 
 
@@ -35,10 +38,13 @@ public class HomeFragment extends Fragment {
 
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
+
+
+        RecyclerView.Adapter adapter = null;
+        binding.productRecyclerView.setAdapter(null);
         return binding.getRoot();
-        productList = new productList();
-        productAdapter adapter =new productAdapter(productList>,HomeFragment.this);
-        binding.productRecyclerView.setAdapter(adapter);
+
+
 
 
 
