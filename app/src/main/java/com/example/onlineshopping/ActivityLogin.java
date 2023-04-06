@@ -1,18 +1,29 @@
 package com.example.onlineshopping;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.onlineshopping.databinding.ActivityLoginBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityLogin extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
+    FirebaseAuth userAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,26 +31,72 @@ public class ActivityLogin extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.loginButton.setOnClickListener(view -> {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-            if (binding.userEmail.getText().toString().equals("")){
+        if (firebaseUser!= null){
+            startActivity( new Intent(this, MainActivity.class));
+            finish();
+        }
+
+        userAuth =FirebaseAuth.getInstance();
+
+        binding.loginButton.setOnClickListener(v -> {
+
+            String email =binding.userEmail.getText().toString().trim();
+            String password =binding.userPassword.getText().toString().trim();
+
+
+
+            if (email.equals("")){
                 binding.userEmail.setError("Email can't be empty");
-                return;
             }
 
-            String userEmail = binding.userEmail.getText().toString();
-
-            if (binding.userPassword.getText().toString().equals("")){
-                binding.userPassword.setError("Password can't be empty");
-                return;
+            else if (password.equals("")){
+                binding.userPassword.setError("password can't be empty");
             }
 
-            String password = binding.userPassword.getText().toString();
+            else{
+                logInButton( email,password);
+            }
 
-            //TODO: Add login logic here
-
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
         });
+    }
+
+    private void logInButton(String email, String password) {
+        userAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                Toast.makeText(ActivityLogin.this, "Successfully registered..", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ActivityLogin.this, MainActivity.class));
+                finish();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showAlert(e.getLocalizedMessage() );
+
+            }
+        });
+    }
+
+    private void showAlert(String errMsg){
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setTitle("Warning!");
+        builder.setMessage(errMsg);
+        builder.setIcon(android.R.drawable.stat_notify_error);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+
     }
 }
